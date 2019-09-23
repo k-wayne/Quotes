@@ -8,6 +8,7 @@ import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LikesComponent } from './components/likes/likes.component';
+import { DateCountPipe } from './date-count.pipe';
 
 
 
@@ -18,6 +19,7 @@ import { LikesComponent } from './components/likes/likes.component';
     UsersComponent,
     NavbarComponent,
     LikesComponent,
+    DateCountPipe,
   ],
   imports: [
     BrowserModule,
