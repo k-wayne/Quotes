@@ -1,0 +1,87 @@
+<button (click)="showUserForm = !showUserForm" class="btn btn-dark mb-2">Add Quote</button>
+<div class="card card-body mb-3" *ngIf="showUserForm">
+  <h3>Please type in your details and quote</h3>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <div class="form-group">
+      <label>First Name</label>
+      <input 
+        type="text" 
+        [(ngModel)]="user.firstName" 
+        [ngClass]="{'is-invalid':userFirstName.errors && userFirstName.touched}"
+        class="form-control" 
+        name="firstName"
+        #userFirstName="ngModel"
+        required
+        minlength="2"
+      >
+      <div [hidden]="!userFirstName.errors?.required" class="invalid-feedback">
+        Please enter your first name.
+      </div>
+
+      <div [hidden]="!userFirstName.errors?.minlength" class="invalid-feedback">
+          Your name must have at least 2 characters.
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Second Name</label>
+      <input 
+        type="text" 
+        [(ngModel)]="user.lastName" 
+        [ngClass]="{'is-invalid':userLastName.errors && userLastName.touched}"
+        class="form-control" 
+        name="lastName"
+        #userLastName="ngModel"
+        required
+        minlength="2"
+      >
+      <div [hidden]="!userLastName.errors?.required" class="invalid-feedback">
+        Please enter your second name.
+      </div>
+
+      <div [hidden]="!userLastName.errors?.minlength" class="invalid-feedback">
+          Your name must have at least 2 characters.
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Quotes</label>
+      <input type="text"
+      [(ngModel)]="user.quote"
+      [ngClass]="{'is-invalid':userQuote.errors && userQuote.touched}"
+      class="form-control"
+      name="quote"
+      #userQuote="ngModel"
+      required
+      >
+      <div [hidden]="!userQuote.errors?.required" class="invalid-feedback">
+        Please type in a quote.
+      </div>
+      
+    </div>
+
+    <button id ="buttoncolor"[disabled]="!userForm.form.valid" class="btn bg-success mb-3">Publish Quote</button>
+  </form>
+</div>
+
+  
+<ul class="list-unstyled" *ngIf="loaded && users?.length > 0">
+  <li class="card card-body mb-2" *ngFor="let user of users" [class.bg-light]="user.isActive">
+    <h3>{{ user.firstName }} {{ user.lastName }}
+      <small>
+        <button (click)="user.hide = !user.hide" class="btn btn-dark btn-xs ">
+          expand
+        </button>
+      </small>
+    </h3>
+    <ul class="list-group" *ngIf="!user.hide">
+      <li class="list-group-item">Quote: "{{ user.quote }}"</li>
+      <li class="list-group-item">Posted at: {{ user.posted | date:'medium' }}</li>
+      <app-likes></app-likes>
+    </ul>
+  </li>
+  
+</ul>
+
+
+
+
+
