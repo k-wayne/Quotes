@@ -10,13 +10,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LikesComponent } from './components/likes/likes.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     UsersComponent,
     NavbarComponent,
-    LikesComponent
+    LikesComponent,
   ],
   imports: [
     BrowserModule,

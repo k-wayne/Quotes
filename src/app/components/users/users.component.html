@@ -75,6 +75,7 @@
     <ul class="list-group" *ngIf="!user.hide">
       <li class="list-group-item">Quote: "{{ user.quote }}"</li>
       <li class="list-group-item">Posted at: {{ user.posted | date:'medium' }}</li>
+      
       <app-likes></app-likes>
     </ul>
   </li>
